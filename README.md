@@ -1,2 +1,2 @@
-# learn2branch-ecole
-Reimplementation of the GNN for learning to branch paper
+# Exact Combinatorial Optimization with Graph Convolutional Neural Networks
+Official reimplementation of paper "Exact Combinatorial Optimization with Graph Convolutional Neural Networks" in Ecole.

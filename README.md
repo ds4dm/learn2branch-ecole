@@ -30,14 +30,17 @@ conda install pyg -c pyg -c conda-forge
 
 Please refer to the most up to date installation instructions for [Ecole](https://github.com/ds4dm/ecole#installation), [Pytorch](https://pytorch.org/get-started/locally) and [Pytorch Geometric](https://github.com/pyg-team/pytorch_geometric#installation) if you encounter any errors.
 
-## Running
+## Benchmarks
+
+For every benchmark in the paper, we describe the code for running the experiments, and the results compared to the original implementation.
 
 ### Set Covering
+
 ```
 # Generate MILP instances
 python 01_generate_instances.py setcover
 # Generate supervised learning datasets
-python 02_generate_samples.py setcover -j 4  # number of available CPUs
+python 02_generate_dataset.py setcover -j 4  # number of available CPUs
 # Training
 for i in {0..4}
 do
@@ -47,12 +50,57 @@ done
 python 04_evaluate.py setcover
 ```
 
+<table>
+  <tr>
+    <th></th>
+    <th colspan="2">Easy</th>
+    <th colspan="2">Medium</th>
+    <th colspan="2">Hard</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Time</th>
+    <th>Nodes</th>
+    <th>Time</th>
+    <th>Nodes</th>
+    <th>Time</th>
+    <th>Nodes</th>
+  </tr>
+  <tr>
+    <th>SCIP default</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>GNN (original)</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>GNN (reimplementation)</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
 ### Combinatorial Auction
 ```
 # Generate MILP instances
 python 01_generate_instances.py cauctions
 # Generate supervised learning datasets
-python 02_generate_samples.py cauctions -j 4  # number of available CPUs
+python 02_generate_dataset.py cauctions -j 4  # number of available CPUs
 # Training
 for i in {0..4}
 do
@@ -67,7 +115,7 @@ python 04_evaluate.py cauctions
 # Generate MILP instances
 python 01_generate_instances.py facilities
 # Generate supervised learning datasets
-python 02_generate_samples.py facilities -j 4  # number of available CPUs
+python 02_generate_dataset.py facilities -j 4  # number of available CPUs
 # Training
 for i in {0..4}
 do
@@ -82,7 +130,7 @@ python 04_evaluate.py facilities
 # Generate MILP instances
 python 01_generate_instances.py indset
 # Generate supervised learning datasets
-python 02_generate_samples.py indset -j 4  # number of available CPUs
+python 02_generate_dataset.py indset -j 4  # number of available CPUs
 # Training
 for i in {0..4}
 do

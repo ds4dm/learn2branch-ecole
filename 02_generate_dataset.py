@@ -102,7 +102,7 @@ def make_samples(in_queue, out_queue, stop_flag):
             node_observation = (node_observation.row_features,
                                 (node_observation.edge_features.indices,
                                  node_observation.edge_features.values),
-                                node_observation.column_features)
+                                node_observation.variable_features)
 
             action = action_set[scores[action_set].argmax()]
 
@@ -243,7 +243,10 @@ def collect_samples(instances, out_dir, rng, n_samples, n_jobs,
 
     # # stop all workers
     workers_stop_flag.set()
+    for p in workers:
+        p.join()
 
+    print(f"Done collecting samples for {out_dir}")
     shutil.rmtree(tmp_samples_dir, ignore_errors=True)
 
 

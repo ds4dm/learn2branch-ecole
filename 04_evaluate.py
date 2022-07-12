@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     result_file = f"{args.problem}_{time.strftime('%Y%m%d-%H%M%S')}.csv"
     instances = []
-    seeds = [0]
+    seeds = [0, 1, 2, 3, 4]
     internal_branchers = ['relpscost']
     gnn_models = ['supervised'] # Can be supervised
     time_limit = 3600
@@ -164,7 +164,7 @@ if __name__ == "__main__":
                             observation = (torch.from_numpy(observation.row_features.astype(np.float32)).to(device),
                                            torch.from_numpy(observation.edge_features.indices.astype(np.int64)).to(device),
                                            torch.from_numpy(observation.edge_features.values.astype(np.float32)).view(-1, 1).to(device),
-                                           torch.from_numpy(observation.column_features.astype(np.float32)).to(device))
+                                           torch.from_numpy(observation.variable_features.astype(np.float32)).to(device))
 
                             logits = policy['model'](*observation)
                             action = action_set[logits[action_set.astype(np.int64)].argmax()]
